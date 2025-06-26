@@ -1,0 +1,37 @@
+name: Daily Auto Commit
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    # Allows manual triggering
+
+jobs:
+  auto_commit_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run auto-commit script
+        run: |
+          # 1. Configure Git user
+          git config --global user.name "erichung9060"
+          git config --global user.email "rthung96@gmail.com"
+
+          # 2. Create or update a file to ensure there's a change
+          echo "A commit a day keeps the doctor away. Current date: $(date)" >> daily-log.txt
+
+          # 3. Add and commit the changes
+          git add daily-log.txt
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "feat: Automated daily commit"
+          else
+            echo "No changes to commit."
+          fi
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
