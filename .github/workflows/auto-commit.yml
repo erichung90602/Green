@@ -29,7 +29,7 @@ jobs:
 
           # 3. Add and commit the changes
           git add daily-log.txt
-          git commit -m "feat: Automated daily commit"
+          git commit -m "Automated daily commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
