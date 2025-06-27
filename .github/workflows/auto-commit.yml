@@ -3,9 +3,12 @@ name: Daily Auto Commit
 on:
   schedule:
     - cron: '*/5 * * * *'
+  push:
+    # Trigger on push events
   workflow_dispatch:
-    # Allows manual triggering
-
+      # Allows manual triggering of the workflow
+  
+    
 jobs:
   auto_commit_job:
     runs-on: ubuntu-latest
@@ -22,15 +25,11 @@ jobs:
           git config --global user.email "rthung96@gmail.com"
 
           # 2. Create or update a file to ensure there's a change
-          echo "A commit a day keeps the doctor away. Current date: $(date)" >> daily-log.txt
+          echo "A commit a day keeps the doctor away. Current date: $(date)" > daily-log.txt
 
           # 3. Add and commit the changes
           git add daily-log.txt
-          if ! git diff-index --quiet HEAD; then
-            git commit -m "feat: Automated daily commit"
-          else
-            echo "No changes to commit."
-          fi
+          git commit -m "feat: Automated daily commit"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
