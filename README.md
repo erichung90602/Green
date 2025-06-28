@@ -13,6 +13,9 @@ This project uses a GitHub Actions workflow to automatically commit to this repo
     git config --global user.email "your-email@example.com"
     ```
 
-5.  Save the changes.  
+5. Save the changes.
+6. Leave fork network:
+
+   Go to the repository’s Settings, scroll down to the `Danger Zone`, and click `Leave fork network.`
 
 That's it! The workflow will now run automatically at the scheduled time. You can check the "Actions" tab in your GitHub repository to see the workflow runs.
