@@ -21,8 +21,8 @@ jobs:
       - name: Run auto-commit script
         run: |
           # 1. Configure Git user
-          git config --global user.name "erichung9060"
-          git config --global user.email "rthung96@gmail.com"
+          git config --global user.name "erichung90602"
+          git config --global user.email "rthung96.2@gmail.com"
 
           # 2. Create or update a file to ensure there's a change
           echo "A commit a day keeps the doctor away. Current date: $(date)" > daily-log.txt
